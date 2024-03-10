@@ -429,8 +429,8 @@ void verticaltrevaersal(Node* root){
     int r = 0;
     find(root,0,l,r);
     vector<int>ans(abs(l)+r+1);
-    vector<vectot<int>positive(abs(l)+r+1);
-    vector<vector<int>negative(abs(l)+r+1);
+    vector<vectot<int>positive(r+1);
+    vector<vector<int>negative(abs(l)+1);
     queue<Node*> q;
     queue<int> index;
 
@@ -457,5 +457,11 @@ void verticaltrevaersal(Node* root){
             q.push(temp->right);
             index.push(pos+1);
         }
+        /*
+        for answer we traverse it we traverse the negative in backward direction and 
+        poritive in forward direction to get the answer.
+        */
     }
+
 }
+
