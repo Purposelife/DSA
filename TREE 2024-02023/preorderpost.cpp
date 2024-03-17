@@ -465,3 +465,51 @@ void verticaltrevaersal(Node* root){
 
 }
 
+
+//Lowest common ansestor
+
+void LCA(Node* root, int lower , int upper){
+    if(!root)
+        return;
+    
+    if(root->data > lower && root -> data > upper)
+        return LCA(root->left,lower,upper);
+
+    else if(root->data<lower && root->data < upper)
+        return(root->right,lower,upper);
+    
+    return root;
+}
+
+
+//print the number in the range
+void  printRange(Node *root,int lower,int upper) { 
+    if(!root)
+        return;
+
+    if(root->data > upper && root-> data > lower)
+        printRange(root->left,lower,upper);
+    else if(root->data < upper && root-> data < lower)
+        printRange(root->right,lower,upper);
+    
+    else{
+        printRange(root->left,lower,upper);
+        ans.push_back(root->data);
+        printRange(root->right,lower,upper);
+    }
+}
+
+//check for dead end
+bool Dead(Node* root, int lower , int upper){
+    if(!root)
+        return;
+    
+    if(!root->left && !root->right){
+        if(root->data - lower == 1 && upper - root->data == 1)
+            return 1;
+        else    
+            return 0;
+    }
+
+    return Dead(root->left,lower,root->data) || Dead(root->right,root->data,upper);
+}
